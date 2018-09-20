@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbxaba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/15 14:57:04 by sbxaba            #+#    #+#             */
-/*   Updated: 2018/08/15 16:29:28 by sbxaba           ###   ########.fr       */
+/*   Created: 2018/08/15 15:22:20 by sbxaba            #+#    #+#             */
+/*   Updated: 2018/08/15 15:22:23 by sbxaba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf(char *fmt, ...)
+void	ft_strdel(char **as)
 {
-	int		len;
-	va_list	va;
-
-	len = 0;
-	va_start(va, fmt);
-	while (*fmt != '\0')
+	if (as != 0)
 	{
-		if (*fmt != '%')
-			len += ft_print_char(*fmt);
-		else
-		{
-			fmt++;
-			len += ft_conversion(&(fmt), va);
-		}
-		fmt++;
+		free(*as);
+		*as = NULL;
 	}
-	va_end(va);
-	return (len);
 }

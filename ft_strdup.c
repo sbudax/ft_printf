@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbxaba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/15 14:57:04 by sbxaba            #+#    #+#             */
-/*   Updated: 2018/08/15 16:29:28 by sbxaba           ###   ########.fr       */
+/*   Created: 2018/08/15 15:22:03 by sbxaba            #+#    #+#             */
+/*   Updated: 2018/08/15 15:22:04 by sbxaba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf(char *fmt, ...)
+char	*ft_strdup(const char *src)
 {
-	int		len;
-	va_list	va;
+	size_t	n;
+	char	*dst;
 
-	len = 0;
-	va_start(va, fmt);
-	while (*fmt != '\0')
-	{
-		if (*fmt != '%')
-			len += ft_print_char(*fmt);
-		else
-		{
-			fmt++;
-			len += ft_conversion(&(fmt), va);
-		}
-		fmt++;
-	}
-	va_end(va);
-	return (len);
+	n = ft_strlen(src);
+	dst = (char*)malloc(sizeof(const char) * (n + 1));
+	if (dst)
+		ft_memcpy(dst, src, n + 1);
+	return (dst);
 }

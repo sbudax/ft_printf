@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbxaba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/15 14:57:04 by sbxaba            #+#    #+#             */
-/*   Updated: 2018/08/15 16:29:28 by sbxaba           ###   ########.fr       */
+/*   Created: 2018/08/15 15:24:02 by sbxaba            #+#    #+#             */
+/*   Updated: 2018/08/16 12:04:12 by sbxaba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf(char *fmt, ...)
+void		*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	int		len;
-	va_list	va;
+	size_t				i;
+	unsigned char		*vdst;
+	const unsigned char	*vsrc;
 
-	len = 0;
-	va_start(va, fmt);
-	while (*fmt != '\0')
+	vdst = dst;
+	vsrc = src;
+	i = 0;
+	while (i < n)
 	{
-		if (*fmt != '%')
-			len += ft_print_char(*fmt);
-		else
-		{
-			fmt++;
-			len += ft_conversion(&(fmt), va);
-		}
-		fmt++;
+		vdst[i] = vsrc[i];
+		i++;
 	}
-	va_end(va);
-	return (len);
+	return (dst);
 }

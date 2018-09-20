@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbxaba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/15 14:57:04 by sbxaba            #+#    #+#             */
-/*   Updated: 2018/08/15 16:29:28 by sbxaba           ###   ########.fr       */
+/*   Created: 2018/08/15 15:21:35 by sbxaba            #+#    #+#             */
+/*   Updated: 2018/08/15 15:21:41 by sbxaba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf(char *fmt, ...)
+int	ft_strlen(const char *s)
 {
-	int		len;
-	va_list	va;
+	int	i;
 
-	len = 0;
-	va_start(va, fmt);
-	while (*fmt != '\0')
-	{
-		if (*fmt != '%')
-			len += ft_print_char(*fmt);
-		else
-		{
-			fmt++;
-			len += ft_conversion(&(fmt), va);
-		}
-		fmt++;
-	}
-	va_end(va);
-	return (len);
+	i = 0;
+	if (s != NULL)
+		while (s[i])
+			i++;
+	return (i);
 }

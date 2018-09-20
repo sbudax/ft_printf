@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbxaba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/15 14:57:04 by sbxaba            #+#    #+#             */
-/*   Updated: 2018/08/15 16:29:28 by sbxaba           ###   ########.fr       */
+/*   Created: 2018/08/15 15:20:57 by sbxaba            #+#    #+#             */
+/*   Updated: 2018/08/15 15:21:10 by sbxaba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf(char *fmt, ...)
+char		*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	int		len;
-	va_list	va;
+	char	*str;
+	size_t	i;
 
-	len = 0;
-	va_start(va, fmt);
-	while (*fmt != '\0')
+	if (!s)
+		return (0);
+	str = (char*)malloc(sizeof(char) * (len + 1));
+	if (str)
 	{
-		if (*fmt != '%')
-			len += ft_print_char(*fmt);
-		else
-		{
-			fmt++;
-			len += ft_conversion(&(fmt), va);
-		}
-		fmt++;
+		i = 0;
+		while (i < len)
+			str[i++] = s[start++];
+		str[i] = '\0';
+		return (str);
 	}
-	va_end(va);
-	return (len);
+	return (0);
 }

@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_print_percent.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbxaba <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/15 14:57:04 by sbxaba            #+#    #+#             */
-/*   Updated: 2018/08/15 16:29:28 by sbxaba           ###   ########.fr       */
+/*   Created: 2018/08/17 14:11:46 by sbxaba            #+#    #+#             */
+/*   Updated: 2018/08/17 14:11:51 by sbxaba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf(char *fmt, ...)
+int					ft_print_percent(t_flist *lst, char c)
 {
-	int		len;
-	va_list	va;
+	int				len;
 
 	len = 0;
-	va_start(va, fmt);
-	while (*fmt != '\0')
-	{
-		if (*fmt != '%')
-			len += ft_print_char(*fmt);
-		else
-		{
-			fmt++;
-			len += ft_conversion(&(fmt), va);
-		}
-		fmt++;
-	}
-	va_end(va);
+	if ((lst->flags)[2] == '0')
+		(lst->flags)[0] = '0';
+	if ((lst->flags)[3] != '-' && lst->width > 1)
+		while (((lst->width)-- - 1))
+			len += ft_print_char((lst->flags)[0]);
+	len += ft_print_char(c);
+	if (lst->width > 1 && (lst->flags)[3] == '-')
+		while ((lst->width)-- - 1)
+			len += ft_print_char(' ');
 	return (len);
 }

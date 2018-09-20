@@ -5,32 +5,32 @@
 #                                                     +:+ +:+         +:+      #
 #    By: sbxaba <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/07/06 10:46:50 by sbxaba            #+#    #+#              #
-#    Updated: 2018/07/06 10:59:26 by sbxaba           ###   ########.fr        #
+#    Created: 2018/08/15 15:11:37 by sbxaba            #+#    #+#              #
+#    Updated: 2018/08/15 15:17:00 by sbxaba           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -I.
 
-SRCS = ft_printf.c\
-	   conv_fmt.c\
-	   libft/*.c\
+GCC = gcc -c
 
-OBJ = ft_printf.o\
-	  conv_fmt.o\
-	  libft/*.o\
+SRCS = *.c
 
-RM = rm -f
+OBJS = *.o
 
-all: $(NAME)
+all : $(NAME)
 
-$(NAME):
-	gcc -c $(CFLAGS) $(SRCS)
-	ar -rcs $(NAME) $(OBJ)
+$(NAME) :
+	$(GCC) $(SRCS) $(CFLAGS)
+	ar -rcs $(NAME) $(OBJS)
+	ranlib $(NAME)
 
-fclean:
-	$(RM) $(OBJ) $(NAME)
+clean :
+	rm -f $(OBJS)
 
-re: fclean all
+fclean :
+	rm -f $(OBJS) $(NAME)
+
+re : fclean all
